@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+	android:padding="15dip"
+	android:orientation="horizontal" >
+
+    <LinearLayout        
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+		android:paddingLeft="20dip"
+		android:paddingRight="20dip" >
+
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/imageLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/bygfoot_splash" />
+        
+        <TableLayout
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_gravity="center"
+			android:stretchColumns="*" >
+			
+            <TableRow>
+                <Button
+			        android:id="@+id/buttonNewGame"			        
+			        android:text="@string/newgame"
+			        android:onClick="onClickMenu" />			
+			    <Button
+			        android:id="@+id/buttonLoadGame"			        
+			        android:text="@string/loadgame" />
+            </TableRow>
+            
+            <TableRow >
+                <Button
+			        android:id="@+id/buttonContribuitors"			        
+			        android:text="@string/contribuitors" />			
+			    <Button
+			        android:id="@+id/buttonQuit"
+			        android:text="@string/quit" />
+            </TableRow>
+         </TableLayout>
+	        
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/layout/activity_main.xml -->

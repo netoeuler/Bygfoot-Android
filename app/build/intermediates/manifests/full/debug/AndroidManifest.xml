@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.eulernetongt.bygfoot"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.eulernetongt.bygfoot.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.eulernetongt.bygfoot.NewGameActivity"
+            android:label="@string/newgame" >
+        </activity>
+        <activity
+            android:name="com.eulernetongt.bygfoot.PreloadNewGameActivity"
+            android:label="@string/preloadnewgame" />
+        <activity
+            android:name="com.eulernetongt.bygfoot.HomeActivity"
+            android:label="@string/home" >
+        </activity>
+        <activity
+            android:name="com.eulernetongt.bygfoot.TablesActivity"
+            android:label="@string/tables" >
+        </activity>
+        <activity
+            android:name="com.eulernetongt.bygfoot.FixturesActivity"
+            android:label="@string/fixtures" >
+        </activity>
+        <activity
+            android:name="com.eulernetongt.bygfoot.LiveGameActivity"
+            android:label="Live Game" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

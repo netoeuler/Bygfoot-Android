@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bygfoot</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="newgame">New Game</string>
+    <string name="loadgame">Load Game</string>
+    <string name="contribuitors">Contribuitors</string>
+    <string name="quit">Quit</string>
+    
+    <string name="home">Home</string>
+    <string name="preloadnewgame">Preload New Game</string>
+    <string name="tables">Tables</string>
+    <string name="fixtures">Fixtures</string>
+    <string name="livegame">Live Game</string>
+
+    <string name="lg_commentary">Commentary</string>
+    <string name="lg_statistics">Statistics</string>
+    <string name="lg_opponent">Opponent</string>
+
+</resources>
