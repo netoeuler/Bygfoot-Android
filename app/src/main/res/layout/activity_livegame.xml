@@ -4,18 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <ProgressBar
-        style="@android:style/Widget.ProgressBar.Horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="30dip"
-        android:id="@+id/progressBarTime"
-        android:max="90"/>
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="30dip"
+            android:id="@+id/progressBarTime"
+            android:max="90"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:gravity="center"
+            android:text="0"
+            android:id="@+id/textCurrentTime"/>
+
+        </RelativeLayout>
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Team1 0 - 0 Team2"
+        android:gravity="center"
         android:id="@+id/textScoreMatch" />
 
     <SeekBar

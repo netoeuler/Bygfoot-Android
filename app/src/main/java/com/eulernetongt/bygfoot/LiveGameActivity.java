@@ -2,22 +2,42 @@ package com.eulernetongt.bygfoot;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TabHost;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class LiveGameActivity extends Activity{
+
+    private final Handler handler = new Handler();
+    private Timer timer;
+    private TimerTask task;
+
+    private ProgressBar pg;
+    private TextView textCurrentTime;
+
+    private int currentTime;
+    private boolean interval;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_livegame);
 
-        ProgressBar pg = (ProgressBar)findViewById(R.id.progressBarTime);
+        pg = (ProgressBar)findViewById(R.id.progressBarTime);
         pg.setEnabled(false);
-        pg.setProgress(45);
+        //pg.setProgress(45);
+
+        textCurrentTime = (TextView)findViewById(R.id.textCurrentTime);
 
         TabHost tabhost = (TabHost)findViewById(R.id.tabhostmatch);
         tabhost.setup();
@@ -46,7 +66,30 @@ public class LiveGameActivity extends Activity{
         TableRow row1 = new TableRow(this);
 		TableRow.LayoutParams lp1 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 	    row1.setLayoutParams(lp1);
+
+        currentTime = 0;
+        interval = false;
+        rollTime();
+
 	}
+
+    private void rollTime(){
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ++currentTime;
+                        pg.setProgress(currentTime);
+
+                    }
+                });
+            }
+        };
+
+        timer.schedule(task,1000,90000);
+    }
 
     @Override
     public void onBackPressed() {
