@@ -104,8 +104,8 @@ public class NewGameActivity extends Activity{
 			Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
 		else{
 			//Intent i = new Intent(this,PreloadNewGameActivity.class);
-			//Intent i = new Intent(this,HomeActivity.class);
-			Intent i = new Intent(this,LiveGameActivity.class);
+			Intent i = new Intent(this,HomeActivity.class);
+			//Intent i = new Intent(this,LiveGameActivity.class);
 			
 			Calendar.generateByCountry(selectedCountry);
 			TeamPlayers.generateTeamPlayersByCountry(selectedCountry);

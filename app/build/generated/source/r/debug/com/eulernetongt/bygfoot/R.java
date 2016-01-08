@@ -74,33 +74,33 @@ public final class R {
         public static final int main=0x7f070000;
     }
     public static final class string {
-        public static final int action_settings=0x7f050000;
-        public static final int app_name=0x7f050001;
-        public static final int contribuitors=0x7f050002;
-        public static final int fixtures=0x7f050003;
-        public static final int home=0x7f050004;
-        public static final int lg_commentary=0x7f050005;
-        public static final int lg_opponent=0x7f050006;
-        public static final int lg_statistics=0x7f050007;
-        public static final int livegame=0x7f050008;
-        public static final int loadgame=0x7f050009;
-        public static final int newgame=0x7f05000a;
-        public static final int preloadnewgame=0x7f05000b;
-        public static final int quit=0x7f05000c;
-        public static final int tables=0x7f05000d;
+        public static final int action_settings=0x7f060000;
+        public static final int app_name=0x7f060001;
+        public static final int contribuitors=0x7f060002;
+        public static final int fixtures=0x7f060003;
+        public static final int home=0x7f060004;
+        public static final int lg_commentary=0x7f060005;
+        public static final int lg_opponent=0x7f060006;
+        public static final int lg_statistics=0x7f060007;
+        public static final int livegame=0x7f060008;
+        public static final int loadgame=0x7f060009;
+        public static final int newgame=0x7f06000a;
+        public static final int preloadnewgame=0x7f06000b;
+        public static final int quit=0x7f06000c;
+        public static final int tables=0x7f06000d;
     }
     public static final class style {
-        /** 
+        /**  API 11 theme customizations can go here. 
+ API 14 theme customizations can go here. 
+
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
- API 11 theme customizations can go here. 
- API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f050000;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f050001;
     }
 }
