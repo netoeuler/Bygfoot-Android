@@ -63,6 +63,13 @@ public class HomeActivity extends Activity{
 	}
 
 	@Override
+	protected void onRestart() {
+		super.onRestart();
+		footer.removeAllViews();
+		generateFooter();
+	}
+
+	@Override
 	public void onBackPressed() {
 		return;
 	}

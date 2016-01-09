@@ -23,7 +23,10 @@ public class MailMessageScreenActivity extends Activity {
 
         for (MailMessage mm : MailList.getList()){
             if (mm.getTitle().equals(title)){
-                mm.setReaded(true);
+                if (!mm.isReaded()){
+                    mm.setReaded(true);
+                    MailList.subtractUnreadMessages();
+                }
                 mailMessage = mm;
                 break;
             }

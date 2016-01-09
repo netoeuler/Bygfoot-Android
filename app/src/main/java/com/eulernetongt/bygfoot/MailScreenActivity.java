@@ -16,17 +16,29 @@ import com.eulernetongt.definitions.MailMessage;
  */
 public class MailScreenActivity extends Activity {
 
+    private LinearLayout mailListLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mailscreen);
+        mailListLayout = (LinearLayout) findViewById(R.id.mail_list);
+        generateMailList();
+    }
 
-        LinearLayout mailListLayout = (LinearLayout) findViewById(R.id.mail_list);
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        //mailListLayout = (LinearLayout) findViewById(R.id.mail_list);
+        mailListLayout.removeAllViews();
+        generateMailList();
+    }
 
+    private void generateMailList(){
         TextView tv;
         for (MailMessage mm : MailList.getList()){
             tv = new TextView(this);
-            tv.setHeight(100);
+            tv.setHeight(70);
             tv.setText(mm.getTitle());
 
             if (mm.isReaded())
@@ -47,7 +59,5 @@ public class MailScreenActivity extends Activity {
 
             mailListLayout.addView(tv);
         }
-
     }
-
 }

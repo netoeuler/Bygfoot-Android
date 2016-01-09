@@ -45,5 +45,9 @@ public class MailList {
     public static int getUnreadMessages() {
         return unreadMessages;
     }
+
+    public static void subtractUnreadMessages(){
+        unreadMessages--;
+    }
 }
 
