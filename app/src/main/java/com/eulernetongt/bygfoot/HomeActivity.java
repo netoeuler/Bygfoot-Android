@@ -45,6 +45,7 @@ public class HomeActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		setTitle(GeneralDefinitions.getTeam());
 		
 		playerSelected = null;
 		popupSelected = null;
@@ -81,7 +82,8 @@ public class HomeActivity extends Activity{
 		TableRow.LayoutParams lp1 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 	    row1.setLayoutParams(lp1);
 	    
-	    String[] texts = {" ", "Name", "Pos", "Sk", "Fit", "Go", "Status", "Age", "Etal"};
+	    //I removed "Status" after "Go"
+		String[] texts = {" ", "Name", "Pos", "Sk ", "Fit ", "Go ", "Age ", "Etal"};
 	    TextView linha0;
 	    
 	    for (String tx : texts){
@@ -140,7 +142,8 @@ public class HomeActivity extends Activity{
 		    }		    
 		    row.addView(linhaPlayer);		    
 		    
-		    texts = new String[] {String.format("%d ", player.getSkill()), String.format("%d ", player.getFitness()), "0", "OK",
+		    //I removed "OK" after "0"
+			texts = new String[] {String.format("%d ", player.getSkill()), String.format("%d ", player.getFitness()), "0",
 					String.format("%d ", player.getAge())};
 		    
 		    for (String tx : texts){
@@ -195,19 +198,22 @@ public class HomeActivity extends Activity{
 				@Override
 				public boolean onLongClick(View v) {
 					//onClickPlayerStats(v);
+					TextView tv = (TextView)((TableRow) v).getChildAt(1);
+					String playerName =  tv.getText().toString();
 					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
-					alertDialogBuilder.setTitle("Player name");
-					
-					alertDialogBuilder
-						.setMessage("Stats")
-						.setCancelable(false)
-						.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
-							
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								
-							}
-						});
+					alertDialogBuilder.setTitle(playerName);
+					alertDialogBuilder.setMessage("Status: OK");
+					alertDialogBuilder.setCancelable(false);
+
+					final View dialogView = getLayoutInflater().inflate(R.layout.long_press_player, null);
+					alertDialogBuilder.setView(dialogView);
+
+					alertDialogBuilder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+
+						}
+					});
 					
 					AlertDialog alertDialog = alertDialogBuilder.create();
 					alertDialog.show();
@@ -355,8 +361,7 @@ public class HomeActivity extends Activity{
 		text.setText("Av. Skills: ");
 		posheader.addView(text);*/
 		
-		texts = new String[] {GeneralDefinitions.getTeam().concat(" "), "Competition ",
-				"Rank ", "Money: 5 000 000 "};
+		texts = new String[] {"Competition ", "Rank ", String.format("Money: %d ", GeneralDefinitions.getMoney())};
 		
 		for (String tx : texts){
 			text = new TextView(this);
@@ -386,7 +391,7 @@ public class HomeActivity extends Activity{
 		edt = new EditText(this);
 		edt.setEnabled(false);
 		edt.setSelected(false);
-		edt.setWidth(200);
+		edt.setWidth(250);
 		//TODO: match parent
 		footer.addView(edt);
 		

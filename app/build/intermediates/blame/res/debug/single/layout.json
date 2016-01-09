@@ -28,6 +28,10 @@
         "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/layout/activity_tables.xml"
     },
     {
+        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/layout/long_press_player.xml",
+        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/layout/long_press_player.xml"
+    },
+    {
         "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/layout/activity_newgame.xml",
         "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/layout/activity_newgame.xml"
     },

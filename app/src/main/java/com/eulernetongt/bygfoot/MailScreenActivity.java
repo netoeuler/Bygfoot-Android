@@ -29,7 +29,6 @@ public class MailScreenActivity extends Activity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        //mailListLayout = (LinearLayout) findViewById(R.id.mail_list);
         mailListLayout.removeAllViews();
         generateMailList();
     }
