@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/layout/activity_fixtures.xml",
-        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/layout/activity_fixtures.xml"
-    },
-    {
         "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
         "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/layout/activity_fixtures.xml",
+        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/layout/activity_fixtures.xml"
     },
     {
         "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/layout/activity_mailscreen.xml",
@@ -30,5 +30,9 @@
     {
         "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/layout/activity_newgame.xml",
         "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/layout/activity_newgame.xml"
+    },
+    {
+        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/layout/activity_mailmessagescreen.xml",
+        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/layout/activity_mailmessagescreen.xml"
     }
 ]

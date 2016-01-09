@@ -6,15 +6,21 @@ package com.eulernetongt.definitions;
 public class MailMessage {
 
     private String message;
+    private String title;
     private boolean readed;
 
-    public MailMessage(String msg){
+    public MailMessage(String title, String msg){
+        this.title = title;
         message = msg;
         readed = false;
     }
 
     public String getMessage() {
         return message;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public boolean isReaded() {
@@ -24,4 +30,6 @@ public class MailMessage {
     public void setReaded(boolean readed) {
         this.readed = readed;
     }
+
+
 }

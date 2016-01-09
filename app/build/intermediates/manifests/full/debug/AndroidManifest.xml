@@ -49,6 +49,10 @@
             android:name="com.eulernetongt.bygfoot.MailScreenActivity"
             android:label="Mail Screen" >
         </activity>
+        <activity
+            android:name="com.eulernetongt.bygfoot.MailMessageScreenActivity"
+            android:label="Mail Message Screen" >
+        </activity>
     </application>
 
 </manifest>

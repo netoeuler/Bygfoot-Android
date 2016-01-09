@@ -1,6 +1,7 @@
 package com.eulernetongt.bygfoot;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -23,14 +24,12 @@ public class MailScreenActivity extends Activity {
         LinearLayout mailListLayout = (LinearLayout) findViewById(R.id.mail_list);
 
         TextView tv;
-        for (int i=9 ; i>=0; i--){
-            if (MailList.getList()[i] == null)
-                continue;
-
+        for (MailMessage mm : MailList.getList()){
             tv = new TextView(this);
-            tv.setText(MailList.getList()[i].getMessage());
+            tv.setHeight(100);
+            tv.setText(mm.getTitle());
 
-            if (MailList.getList()[i].isReaded())
+            if (mm.isReaded())
                 tv.setBackgroundColor(Color.WHITE);
             else
                 tv.setBackgroundColor(Color.GRAY);
@@ -38,7 +37,11 @@ public class MailScreenActivity extends Activity {
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //MailList.getList()[index].setReaded(true);
+                    String title = ((TextView) v).getText().toString();
+                    MailMessage mm = MailList.getByTitle(title);
+                    Intent i = new Intent(MailScreenActivity.this, MailMessageScreenActivity.class);
+                    i.putExtra("title",mm.getTitle());
+                    startActivity(i);
                 }
             });
 

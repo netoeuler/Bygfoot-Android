@@ -49,6 +49,10 @@
             android:name=".MailScreenActivity"
             android:label="Mail Screen">
         </activity>
+        <activity
+            android:name=".MailMessageScreenActivity"
+            android:label="Mail Message Screen">
+        </activity>
         
 	</application>
 

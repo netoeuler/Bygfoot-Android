@@ -45,16 +45,9 @@ public class PreloadNewGameActivity extends Activity{
 		textview = new TextView(this);
 		textview.setText("Setting mail list...");
 		MailList.generate();
-		MailList.addMessage(String.format("Welcome to %s", prevIntent.getStringExtra("selectedTeam")));
+		MailList.addWelcomeMessage();
 		layout.addView(textview);
 		
-		/*ArrayList<String> teams = Teams.getTeams(GeneralDefinitions.getCountry());
-		textview.setText("Generating teams");
-		for (String team : teams){
-			//textview.setText("Generating "+team);
-			//TeamPlayers.generateTeamPlayersByTeam(team,	GeneralDefinitions.getCountry());
-		}*/
-
 		startActivity(new Intent(this,HomeActivity.class));
 		
 	}

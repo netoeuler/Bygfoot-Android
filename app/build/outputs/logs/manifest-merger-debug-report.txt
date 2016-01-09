@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:2:1-55:12
+ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:2:1-59:12
 	xmlns:android
 		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:2:11-69
 	package
@@ -26,7 +26,7 @@ ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/An
 		INJECTED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml
 		INJECTED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml
 application
-ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:11:5-53:16
+ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:11:5-57:16
 	android:label
 		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:14:9-41
 	android:allowBackup
@@ -93,3 +93,9 @@ ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/An
 		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:50:13-40
 	android:name
 		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:49:13-47
+activity#com.eulernetongt.bygfoot.MailMessageScreenActivity
+ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:52:9-55:20
+	android:label
+		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:54:13-48
+	android:name
+		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:53:13-54
