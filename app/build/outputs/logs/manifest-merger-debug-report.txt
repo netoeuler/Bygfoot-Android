@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:2:1-52:12
+ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:2:1-55:12
 	xmlns:android
 		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:2:11-69
 	package
@@ -26,7 +26,7 @@ ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/An
 		INJECTED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml
 		INJECTED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml
 application
-ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:11:5-50:16
+ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:11:5-53:16
 	android:label
 		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:14:9-41
 	android:allowBackup
@@ -82,8 +82,14 @@ ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/An
 	android:name
 		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:41:13-45
 activity#com.eulernetongt.bygfoot.LiveGameActivity
-ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:44:9-48:20
+ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:44:9-47:20
 	android:label
 		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:46:13-38
 	android:name
 		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:45:13-45
+activity#com.eulernetongt.bygfoot.MailScreenActivity
+ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:48:9-51:20
+	android:label
+		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:50:13-40
+	android:name
+		ADDED from /home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/AndroidManifest.xml:49:13-47

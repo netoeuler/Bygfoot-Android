@@ -25,11 +25,18 @@
     	android:orientation="horizontal">
     </LinearLayout>
 
-    <TableLayout
-        android:id="@+id/tablePlayerList"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </TableLayout>
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_weight="1">
+        <TableLayout
+            android:id="@+id/tablePlayerList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </TableLayout>
+    </ScrollView>
+
     
     <LinearLayout
         android:id="@+id/footer"

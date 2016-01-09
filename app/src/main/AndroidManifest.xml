@@ -44,7 +44,10 @@
         <activity
             android:name=".LiveGameActivity"
             android:label="Live Game">
-
+        </activity>
+        <activity
+            android:name=".MailScreenActivity"
+            android:label="Mail Screen">
         </activity>
         
 	</application>

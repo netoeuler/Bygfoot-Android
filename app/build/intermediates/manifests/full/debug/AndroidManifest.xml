@@ -45,6 +45,10 @@
             android:name="com.eulernetongt.bygfoot.LiveGameActivity"
             android:label="Live Game" >
         </activity>
+        <activity
+            android:name="com.eulernetongt.bygfoot.MailScreenActivity"
+            android:label="Mail Screen" >
+        </activity>
     </application>
 
 </manifest>

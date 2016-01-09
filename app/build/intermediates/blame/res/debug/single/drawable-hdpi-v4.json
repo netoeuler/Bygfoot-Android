@@ -8,36 +8,40 @@
         "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/style_bal.png"
     },
     {
-        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/new_week.png",
-        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/new_week.png"
-    },
-    {
         "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/bygfoot_splash.png",
         "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/bygfoot_splash.png"
+    },
+    {
+        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/new_week.png",
+        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/new_week.png"
     },
     {
         "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/boost_off.png",
         "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/boost_off.png"
     },
     {
+        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/boost_anti.png",
+        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/boost_anti.png"
+    },
+    {
         "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/style_def.png",
         "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/style_def.png"
     },
     {
-        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/boost_anti.png",
-        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/boost_anti.png"
+        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/mail.png",
+        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/mail.png"
     },
     {
         "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_launcher.png",
         "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/ic_launcher.png"
     },
     {
-        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/style_all_def.png",
-        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/style_all_def.png"
-    },
-    {
         "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/style_atk.png",
         "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/style_atk.png"
+    },
+    {
+        "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/style_all_def.png",
+        "source": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/src/main/res/drawable-hdpi/style_all_def.png"
     },
     {
         "merged": "/home/netoeuler/AndroidStudioProjects/Bygfoot-Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/bygfoot_splash2.png",

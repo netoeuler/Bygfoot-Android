@@ -103,13 +103,18 @@ public class NewGameActivity extends Activity{
 		if (errorMessage.length() > 0)
 			Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
 		else{
-			//Intent i = new Intent(this,PreloadNewGameActivity.class);
-			Intent i = new Intent(this,HomeActivity.class);
+			Intent i = new Intent(this,PreloadNewGameActivity.class);
+			//Intent i = new Intent(this,HomeActivity.class);
 			//Intent i = new Intent(this,LiveGameActivity.class);
 			
+			/*
 			Calendar.generateByCountry(selectedCountry);
 			TeamPlayers.generateTeamPlayersByCountry(selectedCountry);
 			GeneralDefinitions.generate(name, selectedTeam,	selectedCountry);
+			*/
+			i.putExtra("selectedCountry",selectedCountry);
+			i.putExtra("name",name);
+			i.putExtra("selectedTeam",selectedTeam);
 			
 			startActivity(i);
 		}

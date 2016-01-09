@@ -22,6 +22,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.eulernetongt.definitions.GeneralDefinitions;
+import com.eulernetongt.definitions.MailList;
 import com.eulernetongt.definitions.TeamPlayers;
 import com.eulernetongt.entities.Player;
 
@@ -60,7 +61,12 @@ public class HomeActivity extends Activity{
 		generatePosHeader();
 		generateFooter();
 	}
-	
+
+	@Override
+	public void onBackPressed() {
+		return;
+	}
+
 	private void generatePlayerList(){
 		int curNum=0;
 		
@@ -88,7 +94,8 @@ public class HomeActivity extends Activity{
 		    row.setLayoutParams(lp);
 		    i++;
 		    
-		    if (i == 11){ 
+		    //Blank line to separate starters and reserves
+			if (i == 11){
 		    	TextView linha = new TextView(this);
 			    linha.setText(" ");
 			    row.addView(linha);
@@ -97,7 +104,7 @@ public class HomeActivity extends Activity{
 		    }
 		    
 		    TextView linhaPlayer = new TextView(this);
-		    linhaPlayer.setText((++curNum)+" ");
+		    linhaPlayer.setText(String.format("%d ", ++curNum));
 		    row.addView(linhaPlayer);		    
 		    linhaPlayer = new TextView(this);
 		    linhaPlayer.setText(player.getName().concat(" "));		    
@@ -126,8 +133,8 @@ public class HomeActivity extends Activity{
 		    }		    
 		    row.addView(linhaPlayer);		    
 		    
-		    texts = new String[] {player.getSkill()+" ", player.getFitness()+" ", "0", "OK", 
-		    		player.getAge()+" "};
+		    texts = new String[] {String.format("%d ", player.getSkill()), String.format("%d ", player.getFitness()), "0", "OK",
+					String.format("%d ", player.getAge())};
 		    
 		    for (String tx : texts){
 		    	linhaPlayer = new TextView(this);
@@ -160,8 +167,8 @@ public class HomeActivity extends Activity{
 						playerList.removeViewAt(newNum);
 						playerList.removeViewAt(numSelected);
 						
-						((TextView)oldPlayerSelected.getChildAt(0)).setText((newNum-1)+" ");
-						((TextView)aux.getChildAt(0)).setText(numSelected+" ");
+						((TextView)oldPlayerSelected.getChildAt(0)).setText(String.format("%d ", newNum - 1));
+						((TextView)aux.getChildAt(0)).setText(String.format("%d ", numSelected));
 						
 						playerList.addView(oldPlayerSelected, newNum-1);
 						playerList.addView(aux, numSelected);
@@ -337,9 +344,9 @@ public class HomeActivity extends Activity{
 		});
 		posheader.addView(ibt);
 		
-		text = new TextView(this);
+		/*text = new TextView(this);
 		text.setText("Av. Skills: ");
-		posheader.addView(text);		
+		posheader.addView(text);*/
 		
 		texts = new String[] {GeneralDefinitions.getTeam().concat(" "), "Competition ",
 				"Rank ", "Money: 5 000 000 "};
@@ -355,15 +362,24 @@ public class HomeActivity extends Activity{
 	private void generateFooter(){
 		Button bt;
 		EditText edt;
-		
-		/*bt = new Button(this);
-		bt.setText("Next opponent");
-		footer.addView(bt);*/
+
+		bt = new Button(this);
+		bt.setBackgroundResource(R.drawable.mail);
+		bt.setText(String.format("%d", MailList.getUnreadMessages()));
+		bt.setTextColor(Color.RED);
+		bt.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(HomeActivity.this, MailScreenActivity.class));
+			}
+		});
+
+		footer.addView(bt);
 		
 		edt = new EditText(this);
 		edt.setEnabled(false);
 		edt.setSelected(false);
-		edt.setWidth(600);
+		edt.setWidth(200);
 		//TODO: match parent
 		footer.addView(edt);
 		
@@ -372,8 +388,7 @@ public class HomeActivity extends Activity{
         bt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(HomeActivity.this, LiveGameActivity.class);
-                startActivity(i);
+				startActivity(new Intent(HomeActivity.this, LiveGameActivity.class));
             }
         });
 
@@ -385,8 +400,7 @@ public class HomeActivity extends Activity{
 		PopupWindow popupMessage;
 				
 		popupLayout = new LinearLayout(this);
-		//popupLayout.setOrientation(1);
-        popupLayout.setOrientation(LinearLayout.HORIZONTAL);
+		popupLayout.setOrientation(LinearLayout.VERTICAL);
 		
 		for (int i=0 ; i<lista.length; i++){
 			TextView text = new TextView(this);
@@ -397,7 +411,7 @@ public class HomeActivity extends Activity{
 			popupLayout.addView(text);
 		}
 		
-		popupMessage = new PopupWindow(popupLayout, LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+		popupMessage = new PopupWindow(popupLayout, LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
 		popupMessage.setContentView(popupLayout);
 		
 		hashPopup.put(bt.getText().toString(), popupMessage);
