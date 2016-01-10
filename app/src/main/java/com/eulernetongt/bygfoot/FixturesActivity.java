@@ -76,13 +76,11 @@ public class FixturesActivity extends Activity{
 			
 			List<Match> listMatch = matches.get(currentWeek);
 			
-			Collections.shuffle(listMatch);
-			
 			for (Match m : listMatch){
 				TextView textview = new TextView(this);
 				textview.setText(m.toString());
 				if (m.getHome().equals(GeneralDefinitions.getTeam()) || m.getAway().equals(GeneralDefinitions.getTeam()))
-						textview.setBackgroundColor(Color.rgb(0, 0, 250));
+						textview.setBackgroundColor(Color.rgb(100, 100, 250));
 				fixturesTable.addView(textview);
 			}
 			

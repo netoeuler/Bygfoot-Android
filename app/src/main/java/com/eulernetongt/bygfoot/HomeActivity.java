@@ -242,11 +242,6 @@ public class HomeActivity extends Activity{
 		popupByButton(bt, lista);
 		header.addView(bt);
 		
-		//TODO: Add the original player menu if long press player's name
-		/*bt = new Button(this);
-		bt.setText("Player");
-		header.addView(bt);*/
-		
 		/*bt = new Button(this);
 		bt.setText("User");
 		header.addView(bt);*/

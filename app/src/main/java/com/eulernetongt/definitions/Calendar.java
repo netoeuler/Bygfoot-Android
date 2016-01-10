@@ -2,6 +2,8 @@ package com.eulernetongt.definitions;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import com.eulernetongt.countries.Brazil;
@@ -63,6 +65,16 @@ public class Calendar {
 		}
 		
 		tableList.add(table);
+
+		//Shuffle matches
+		for (Table tb : Calendar.tableList){
+			HashMap<Integer, List<Match>> matches = tb.getMatchesByWeek();
+
+			for (int i=1; i<38 ; i++){
+				List<Match> listMatch = matches.get(i);
+				Collections.shuffle(listMatch);
+			}
+		}
 	}
 	
 }
