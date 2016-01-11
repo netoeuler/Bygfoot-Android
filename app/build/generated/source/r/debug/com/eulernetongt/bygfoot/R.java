@@ -31,7 +31,7 @@ public final class R {
     }
     public static final class id {
         public static final int TextView01=0x7f080017;
-        public static final int action_settings=0x7f080021;
+        public static final int action_settings=0x7f080022;
         public static final int buttonContribuitors=0x7f080015;
         public static final int buttonLoadGame=0x7f080014;
         public static final int buttonNewGame=0x7f080013;
@@ -56,8 +56,9 @@ public final class R {
         public static final int tabOpponent=0x7f08000e;
         public static final int tabStatistics=0x7f08000d;
         public static final int tabhostmatch=0x7f08000b;
-        public static final int tableComp=0x7f080020;
+        public static final int tableComp=0x7f080021;
         public static final int tablePlayerList=0x7f080005;
+        public static final int table_seasonresults=0x7f080020;
         public static final int textCurrentTime=0x7f080008;
         public static final int textName=0x7f080019;
         public static final int textScoreMatch=0x7f080009;
@@ -72,10 +73,12 @@ public final class R {
         public static final int activity_mailmessagescreen=0x7f030003;
         public static final int activity_mailscreen=0x7f030004;
         public static final int activity_main=0x7f030005;
-        public static final int activity_newgame=0x7f030006;
-        public static final int activity_preloadnewgame=0x7f030007;
-        public static final int activity_tables=0x7f030008;
-        public static final int long_press_player=0x7f030009;
+        public static final int activity_myleagueresults=0x7f030006;
+        public static final int activity_newgame=0x7f030007;
+        public static final int activity_preloadnewgame=0x7f030008;
+        public static final int activity_seasonresults=0x7f030009;
+        public static final int activity_tables=0x7f03000a;
+        public static final int long_press_player=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f070000;

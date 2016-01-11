@@ -17,10 +17,13 @@ public class Calendar {
 	
 	public static ArrayList<Table> tableList;	
 	public static ArrayList<TeamTable> tableClassification;
+	public static ArrayList<String[]> seasonsResults;
 	
 	public static void generateByCountry(String country){
 		if (tableList == null)
 			tableList = new ArrayList<Table>();
+		if (seasonsResults == null)
+			seasonsResults = new ArrayList<String[]>();
 		
 		Table table = new Table("Brasileiro Serie A");
 		Random rand = new Random();
@@ -57,9 +60,15 @@ public class Calendar {
 				
 				listMatch.add(new Match(home, away));
 				listMatch2.add(new Match(away, home));
+
+				//Feed the Season Result's list
+				if (GeneralDefinitions.getTeam().equals(home))
+					seasonsResults.add(new String[] {String.format("%d",week+1), "1", "Serie A", away, " --:--"});
+				else if (GeneralDefinitions.getTeam().equals(away))
+					seasonsResults.add(new String[] {String.format("%d",week+1), "1", "Serie A", home, " --:--"});
 			}
-			table.getMatchesByWeek().put(week+1, listMatch);
-			table.getMatchesByWeek().put(rounds+week+1, listMatch2);
+			table.getMatchesByWeek().put(week + 1, listMatch);
+			table.getMatchesByWeek().put(rounds + week + 1, listMatch2);
 			
 			teams.add(1, teams.remove(teams.size()-1));
 		}

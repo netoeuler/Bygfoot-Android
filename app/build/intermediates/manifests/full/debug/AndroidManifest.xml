@@ -53,6 +53,10 @@
             android:name="com.eulernetongt.bygfoot.MailMessageScreenActivity"
             android:label="Mail Message Screen" >
         </activity>
+        <activity
+            android:name="com.eulernetongt.bygfoot.SeasonResultsActivity"
+            android:label="Season Results" >
+        </activity>
     </application>
 
 </manifest>

@@ -50,6 +50,7 @@ public class HomeActivity extends Activity{
 		playerSelected = null;
 		popupSelected = null;
 		hashPopup = new HashMap<String, PopupWindow>();
+		activitiesList = new HashMap<String, Class<? extends Activity>>();
 		
 		playerList = (TableLayout) findViewById(R.id.tablePlayerList);
 		header = (LinearLayout) findViewById(R.id.header);
@@ -233,6 +234,7 @@ public class HomeActivity extends Activity{
 		bt.setText("Figures");
 		lista = new String[] {"Fixtures (week)", "Fixtures (competitions)", "Tables", 
 				"My league results", "Season results"};
+		feedActiviesList(bt.getText().toString(), lista);
 		popupByButton(bt, lista);
 		header.addView(bt);
 		
@@ -281,35 +283,35 @@ public class HomeActivity extends Activity{
 		ibt.setMinimumWidth(50);
 		ibt.setMinimumHeight(50);
 		ibt.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				//onClickStyle(v);
 				final ImageButton ibt = (ImageButton) v;
-				
+
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
 				alertDialogBuilder.setTitle("Select style");
-				
-				String[] items = new String[] {"All defense", "Defense", "Normal", "Attack", "All attack"};
-						
+
+				String[] items = new String[]{"All defense", "Defense", "Normal", "Attack", "All attack"};
+
 				alertDialogBuilder
-					.setItems(items, new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							if (arg1 == 0)
-								ibt.setBackgroundResource(R.drawable.style_all_def);
-							else if (arg1 == 1)
-								ibt.setBackgroundResource(R.drawable.style_def);
-							else if (arg1 == 2)
-								ibt.setBackgroundResource(R.drawable.style_bal);
-							else if (arg1 == 3)
-								ibt.setBackgroundResource(R.drawable.style_atk);
-							else
-								ibt.setBackgroundResource(R.drawable.style_all_atk);
-						}
-					});
-				
+						.setItems(items, new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								if (arg1 == 0)
+									ibt.setBackgroundResource(R.drawable.style_all_def);
+								else if (arg1 == 1)
+									ibt.setBackgroundResource(R.drawable.style_def);
+								else if (arg1 == 2)
+									ibt.setBackgroundResource(R.drawable.style_bal);
+								else if (arg1 == 3)
+									ibt.setBackgroundResource(R.drawable.style_atk);
+								else
+									ibt.setBackgroundResource(R.drawable.style_all_atk);
+							}
+						});
+
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				alertDialog.show();
 			}
@@ -392,12 +394,12 @@ public class HomeActivity extends Activity{
 		
 		bt = new Button(this);
 		bt.setBackgroundResource(R.drawable.new_week);
-        bt.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
+        bt.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
 				startActivity(new Intent(HomeActivity.this, LiveGameActivity.class));
-            }
-        });
+			}
+		});
 
 		footer.addView(bt);
 	}
@@ -424,46 +426,74 @@ public class HomeActivity extends Activity{
 		hashPopup.put(bt.getText().toString(), popupMessage);
 		
 		bt.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				if (popupSelected != null)
-					popupSelected.dismiss(); 
-					
+					popupSelected.dismiss();
+
 				Button bt = (Button) v;
-				
+
 				if (popupSelected == hashPopup.get(bt.getText().toString()))
 					return;
-				
+
 				popupSelected = hashPopup.get(bt.getText().toString());
-				
+
 				popupSelected.showAsDropDown(bt, 0, 0);
 			}
 		});
 	}
 	
 	private void clickListenerPopupItem(TextView text){
-		if (activitiesList == null){
+		/*if (activitiesList == null){
 			activitiesList = new HashMap<String, Class<? extends Activity>>();
 		}
 		
 		if (text.getText().toString().equals("Tables"))
 			activitiesList.put(text.getText().toString(), TablesActivity.class);
 		else if (text.getText().toString().equals("Fixtures (week)"))
-			activitiesList.put(text.getText().toString(), FixturesActivity.class);
+			activitiesList.put(text.getText().toString(), FixturesActivity.class);*/
 		
 		text.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				popupSelected.dismiss();
-				
+
 				TextView tx = (TextView) arg0;
+				if (activitiesList.get(tx.getText().toString()) == null)
+					return;
+
 				Intent i = new Intent(HomeActivity.this, activitiesList.get(tx.getText().toString()));
 				
 				startActivity(i);
 			}
 		});
+	}
+
+	private void feedActiviesList(String txbutton, String[] lista){
+		int i;
+		Class actclass = null;
+
+		if (txbutton.equals("Figures")){
+			for (i=0 ; i<lista.length; i++){
+				if (i==0) actclass = FixturesActivity.class;
+				else if (i==2) actclass = TablesActivity.class;
+                else if (i==4) actclass = SeasonResultsActivity.class;
+				else continue;
+
+				activitiesList.put(lista[i], actclass);
+			}
+		}
+		else if (txbutton.equals("Team")){
+
+		}
+		else if (txbutton.equals("FinStad")){
+
+		}
+		else if (txbutton.equals("Stats")){
+
+		}
 	}
 
 }

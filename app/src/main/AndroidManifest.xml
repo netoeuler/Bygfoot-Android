@@ -53,6 +53,10 @@
             android:name=".MailMessageScreenActivity"
             android:label="Mail Message Screen">
         </activity>
+        <activity
+            android:name=".SeasonResultsActivity"
+            android:label="Season Results">
+        </activity>
         
 	</application>
 

@@ -26,7 +26,13 @@ public class PreloadNewGameActivity extends Activity{
 		LinearLayout layout = (LinearLayout) findViewById(R.id.preloadLayout);
 		TextView textview;
 
-		textview = new TextView(this);
+        textview = new TextView(this);
+        textview.setText("Setting general definitions...");
+        layout.addView(textview);
+        GeneralDefinitions.generate(prevIntent.getStringExtra("name"), prevIntent.getStringExtra("selectedTeam"),
+                prevIntent.getStringExtra("selectedCountry"));
+
+        textview = new TextView(this);
 		textview.setText("Generating calendar...");
 		layout.addView(textview);
 		Calendar.generateByCountry(prevIntent.getStringExtra("selectedTeam"));
@@ -35,12 +41,6 @@ public class PreloadNewGameActivity extends Activity{
 		textview.setText("Generating players...");
 		layout.addView(textview);
 		TeamPlayers.generateTeamPlayersByCountry(prevIntent.getStringExtra("selectedCountry"));
-
-		textview = new TextView(this);
-		textview.setText("Setting general definitions...");
-		layout.addView(textview);
-		GeneralDefinitions.generate(prevIntent.getStringExtra("name"), prevIntent.getStringExtra("selectedTeam"),
-				prevIntent.getStringExtra("selectedCountry"));
 
 		textview = new TextView(this);
 		textview.setText("Setting mail list...");
