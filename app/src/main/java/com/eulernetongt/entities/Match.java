@@ -4,6 +4,9 @@ public class Match {
 	
 	private String home;
 	private String away;
+
+    public static char HOME_TEAM = 'H';
+    public static char AWAY_TEAM = 'A';
 	
 	public Match(String home, String away) {
 		this.home = home;

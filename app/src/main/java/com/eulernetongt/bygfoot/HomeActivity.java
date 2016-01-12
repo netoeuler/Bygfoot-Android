@@ -445,15 +445,6 @@ public class HomeActivity extends Activity{
 	}
 	
 	private void clickListenerPopupItem(TextView text){
-		/*if (activitiesList == null){
-			activitiesList = new HashMap<String, Class<? extends Activity>>();
-		}
-		
-		if (text.getText().toString().equals("Tables"))
-			activitiesList.put(text.getText().toString(), TablesActivity.class);
-		else if (text.getText().toString().equals("Fixtures (week)"))
-			activitiesList.put(text.getText().toString(), FixturesActivity.class);*/
-		
 		text.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

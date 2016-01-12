@@ -1,6 +1,7 @@
 package com.eulernetongt.bygfoot;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -31,14 +32,23 @@ public class SeasonResultsActivity extends Activity {
 
         TableRow row;
         TextView tv;
-        for (String[] line : Calendar.seasonsResults){
+        for (Integer week : Calendar.seasonsResults.keySet()){
+            String[] line = Calendar.seasonsResults.get(week);
             row = new TableRow(this);
-            for (int i=0; i<line.length ; i++){
+
+            tv = new TextView(this);
+            tv.setText(String.format("%d",week));
+            row.addView(tv);
+
+            for (int i=0; i<line.length-1 ; i++){
                 tv = new TextView(this);
                 tv.setText(line[i]);
+                if (i==2 && (line[line.length-1]).charAt(0) == Match.AWAY_TEAM)
+                    tv.setBackgroundColor(Color.DKGRAY);
                 row.addView(tv);
             }
             table_seasonsresults.addView(row);
         }
+
     }
 }

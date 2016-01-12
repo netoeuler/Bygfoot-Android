@@ -1,6 +1,5 @@
 package com.eulernetongt.bygfoot;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class FixturesActivity extends Activity{
 	private LinearLayout fixturesTable;
 	private LinearLayout fixturesHeader;	
 	
-	private int currentWeek=1;
+	private int currentWeek=7;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +38,9 @@ public class FixturesActivity extends Activity{
 			
 			@Override
 			public void onClick(View arg0) {
-				if (currentWeek > 1){
+				if (currentWeek > 7){
 					currentWeek--;
-					generateFixturesTable();
+					feedFixturesTable();
 				}
 			}
 		});
@@ -55,26 +54,24 @@ public class FixturesActivity extends Activity{
 			public void onClick(View arg0) {
 				if (currentWeek < 38){
 					currentWeek++;
-					generateFixturesTable();
+					feedFixturesTable();
 				}					
 			}
 		});
 		fixturesHeader.addView(bt);
 		
-		//TODO: Delete this later
-		/*calendar = new Calendar();
-		calendar.generateByCountry(generalDefinitions.getCountry());*/	
-		
-		generateFixturesTable();
+		feedFixturesTable();
 	}
 	
-	private void generateFixturesTable(){
+	private void feedFixturesTable(){
 		fixturesTable.removeAllViews();
 		
 		for (Table tb : Calendar.tableList){
 			HashMap<Integer, List<Match>> matches = tb.getMatchesByWeek();
 			
 			List<Match> listMatch = matches.get(currentWeek);
+            if (listMatch == null)
+                continue;
 			
 			for (Match m : listMatch){
 				TextView textview = new TextView(this);

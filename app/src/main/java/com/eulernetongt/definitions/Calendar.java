@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.TreeMap;
 
 import com.eulernetongt.countries.Brazil;
 import com.eulernetongt.entities.Match;
@@ -17,13 +18,13 @@ public class Calendar {
 	
 	public static ArrayList<Table> tableList;	
 	public static ArrayList<TeamTable> tableClassification;
-	public static ArrayList<String[]> seasonsResults;
+	public static TreeMap<Integer, String[]> seasonsResults;
 	
 	public static void generateByCountry(String country){
 		if (tableList == null)
 			tableList = new ArrayList<Table>();
 		if (seasonsResults == null)
-			seasonsResults = new ArrayList<String[]>();
+			seasonsResults = new TreeMap<Integer, String[]>();
 		
 		Table table = new Table("Brasileiro Serie A");
 		Random rand = new Random();
@@ -62,13 +63,17 @@ public class Calendar {
 				listMatch2.add(new Match(away, home));
 
 				//Feed the Season Result's list
-				if (GeneralDefinitions.getTeam().equals(home))
-					seasonsResults.add(new String[] {String.format("%d",week+1), "1", "Serie A", away, " --:--"});
-				else if (GeneralDefinitions.getTeam().equals(away))
-					seasonsResults.add(new String[] {String.format("%d",week+1), "1", "Serie A", home, " --:--"});
+				if (GeneralDefinitions.getTeam().equals(home)) {
+                    seasonsResults.put(week + 7, new String[]{"1", "Serie A", away, " --:--", String.format("%c",Match.HOME_TEAM)});
+                    seasonsResults.put(rounds + week + 7, new String[]{"1", "Serie A", away, " --:--", String.format("%c",Match.AWAY_TEAM)});
+                }
+				else if (GeneralDefinitions.getTeam().equals(away)) {
+                    seasonsResults.put(week + 7, new String[]{"1", "Serie A", home, " --:--", String.format("%c",Match.AWAY_TEAM)});
+                    seasonsResults.put(rounds + week + 7, new String[]{"1", "Serie A", home, " --:--", String.format("%c",Match.HOME_TEAM)});
+                }
 			}
-			table.getMatchesByWeek().put(week + 1, listMatch);
-			table.getMatchesByWeek().put(rounds + week + 1, listMatch2);
+			table.getMatchesByWeek().put(week + 7, listMatch);
+			table.getMatchesByWeek().put(rounds + week + 7, listMatch2);
 			
 			teams.add(1, teams.remove(teams.size()-1));
 		}
@@ -79,8 +84,10 @@ public class Calendar {
 		for (Table tb : Calendar.tableList){
 			HashMap<Integer, List<Match>> matches = tb.getMatchesByWeek();
 
-			for (int i=1; i<38 ; i++){
+			for (int i=7; i<50 ; i++){
 				List<Match> listMatch = matches.get(i);
+                if (listMatch == null)
+                    break;
 				Collections.shuffle(listMatch);
 			}
 		}
