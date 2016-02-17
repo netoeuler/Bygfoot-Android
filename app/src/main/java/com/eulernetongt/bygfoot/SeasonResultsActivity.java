@@ -44,7 +44,7 @@ public class SeasonResultsActivity extends Activity {
                 tv = new TextView(this);
                 tv.setText(line[i]);
                 if (i==2 && (line[line.length-1]).charAt(0) == Match.AWAY_TEAM)
-                    tv.setBackgroundColor(Color.DKGRAY);
+                    tv.setBackgroundColor(Color.GRAY);
                 row.addView(tv);
             }
             table_seasonsresults.addView(row);

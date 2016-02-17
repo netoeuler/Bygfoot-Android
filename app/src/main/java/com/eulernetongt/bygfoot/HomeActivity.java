@@ -416,6 +416,8 @@ public class HomeActivity extends Activity{
 			text.setText(lista[i]);
 			//TODO: Think in a not ugly color 
 			text.setBackgroundColor(Color.MAGENTA);
+            text.setHeight(80);
+            text.setTextSize(20);
 			clickListenerPopupItem(text);
 			popupLayout.addView(text);
 		}

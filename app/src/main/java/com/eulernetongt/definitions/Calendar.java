@@ -30,7 +30,8 @@ public class Calendar {
 		Random rand = new Random();
 		
 		//TODO: Generalize this
-		ArrayList<String> teams = Brazil.getTeams();			
+		//ArrayList<String> teams = Brazil.getTeams();
+        ArrayList<String> teams = Brazil.getTeamsByCompetition("Serie A");
 		
 		//Create classification table
 		for (String t : teams){
@@ -63,13 +64,24 @@ public class Calendar {
 				listMatch2.add(new Match(away, home));
 
 				//Feed the Season Result's list
+                String ref;
+                char c_game_round1=' ', c_game_round2=' ';
 				if (GeneralDefinitions.getTeam().equals(home)) {
-                    seasonsResults.put(week + 7, new String[]{"1", "Serie A", away, " --:--", String.format("%c",Match.HOME_TEAM)});
-                    seasonsResults.put(rounds + week + 7, new String[]{"1", "Serie A", away, " --:--", String.format("%c",Match.AWAY_TEAM)});
+                    ref = away;
+                    c_game_round1 = Match.HOME_TEAM;
+                    c_game_round2 = Match.AWAY_TEAM;
                 }
 				else if (GeneralDefinitions.getTeam().equals(away)) {
-                    seasonsResults.put(week + 7, new String[]{"1", "Serie A", home, " --:--", String.format("%c",Match.AWAY_TEAM)});
-                    seasonsResults.put(rounds + week + 7, new String[]{"1", "Serie A", home, " --:--", String.format("%c",Match.HOME_TEAM)});
+                    ref = home;
+                    c_game_round1 = Match.AWAY_TEAM;
+                    c_game_round2 = Match.HOME_TEAM;
+                }
+                else
+                    ref = null;
+
+                if (ref != null) {
+                    seasonsResults.put(week + 7, new String[]{"1", "Serie A", ref, " --:--", String.format("%c", c_game_round1)});
+                    seasonsResults.put(rounds + week + 7, new String[]{"2", "Serie A", ref, " --:--", String.format("%c", c_game_round2)});
                 }
 			}
 			table.getMatchesByWeek().put(week + 7, listMatch);

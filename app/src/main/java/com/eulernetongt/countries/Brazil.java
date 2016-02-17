@@ -21,10 +21,23 @@ public class Brazil extends Team{
 	private static String[] cups = {"Copa do Brasil", "Serie D"};
 	
 	public static ArrayList<String> getTeams(){
+        //TODO: Call generateAllTeams() in another way, this is unrecommended
         if (teams == null)
             generateAllTeams();
 		return Team.getTeams(teams);
 	}
+
+    public static ArrayList<String> getTeamsByCompetition(String competition){
+        String[] teamsReference;
+        if (competition.equals("Serie A"))
+            teamsReference = teamsA;
+        else if (competition.equals("Serie B"))
+            teamsReference = teamsB;
+        else
+        teamsReference = null;
+
+        return Team.getTeams(teamsReference);
+    }
 
     private static void generateAllTeams(){
         int i, j, curI;
@@ -42,5 +55,6 @@ public class Brazil extends Team{
         for ( ; i<curI + teamsB.length ; i++)
             teams[i] = teamsB[j++];
     }
+
 
 }
