@@ -2,6 +2,8 @@ package com.eulernetongt.bygfoot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,6 +28,8 @@ import com.eulernetongt.definitions.MailList;
 import com.eulernetongt.definitions.TeamPlayers;
 import com.eulernetongt.entities.Player;
 
+import org.w3c.dom.Text;
+
 public class HomeActivity extends Activity{
 	
 	private TableLayout playerList;
@@ -39,7 +43,8 @@ public class HomeActivity extends Activity{
 	
 	private HashMap<String, Class<? extends Activity>> activitiesList;
 	
-	private TableRow playerSelected;	
+	private TableRow playerSelected;
+    private ArrayList<TextView> sortedPlayerList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,8 @@ public class HomeActivity extends Activity{
 		posheader = (LinearLayout) findViewById(R.id.posheader);
 		posheader2 = (LinearLayout) findViewById(R.id.posheader2);
 		footer = (LinearLayout) findViewById(R.id.footer);
+
+        sortedPlayerList = new ArrayList<TextView>();
 		
 		generatePlayerList();
 		generateHeader();
@@ -141,7 +148,7 @@ public class HomeActivity extends Activity{
 		    	linhaPlayer.setBackgroundColor(Color.rgb(200, 0, 0));
 		    	linhaPlayer.setTextColor(Color.WHITE);
 		    }		    
-		    row.addView(linhaPlayer);		    
+		    row.addView(linhaPlayer);
 		    
 		    //I removed "OK" after "0"
 			texts = new String[] {String.format("%d ", player.getSkill()), String.format("%d ", player.getFitness()), "0",
@@ -154,45 +161,59 @@ public class HomeActivity extends Activity{
 		    }
 		    
 		   row.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					int numSelected=-1;
-					TableRow oldPlayerSelected = null;
-					if (playerSelected != null){
-						//TODO: Change to default background color
-						playerSelected.setBackgroundColor(Color.WHITE);
-						oldPlayerSelected = playerSelected;
-						TextView tx = ((TextView)playerSelected.getChildAt(0));
-						numSelected = Integer.parseInt(tx.getText().toString().trim());
-					}						
-					
-					TableRow newPlayerSelected = (TableRow) v;
-					TextView tx = ((TextView)newPlayerSelected.getChildAt(0));
-					int newNum = Integer.parseInt(tx.getText().toString().trim());
-					
-					//TODO: reorganize team by positions (Ex: currently, playerList can be DDDMD...)
-					if (numSelected > 0 && numSelected <= 11 && newNum >= 12){
-						newNum++;
-						TableRow aux = (TableRow) playerList.getChildAt(newNum);
-						playerList.removeViewAt(newNum);
-						playerList.removeViewAt(numSelected);
-						
-						((TextView)oldPlayerSelected.getChildAt(0)).setText(String.format("%d ", newNum - 1));
-						((TextView)aux.getChildAt(0)).setText(String.format("%d ", numSelected));
-						
-						playerList.addView(oldPlayerSelected, newNum-1);
-						playerList.addView(aux, numSelected);
-						
-						playerSelected = null;
-					}
-					else{
-						playerSelected = newPlayerSelected;
-						playerSelected.setBackgroundColor(Color.rgb(255, 102, 0));
-					}
-				}				
-				
-			});
+
+               @Override
+               public void onClick(View v) {
+                   int numSelected = -1;
+                   TableRow oldPlayerSelected = null;
+                   if (playerSelected != null) {
+                       //TODO: Change to default background color
+                       playerSelected.setBackgroundColor(Color.WHITE);
+                       oldPlayerSelected = playerSelected;
+                       TextView tx = ((TextView) playerSelected.getChildAt(0));
+                       numSelected = Integer.parseInt(tx.getText().toString().trim());
+                   }
+
+                   TableRow newPlayerSelected = (TableRow) v;
+                   TextView tx = ((TextView) newPlayerSelected.getChildAt(0));
+                   int newNum = Integer.parseInt(tx.getText().toString().trim());
+
+                   //TODO: reorganize team by positions (Ex: currently, playerList can be DDDMD...)
+                   if (numSelected > 0 && numSelected <= 11 && newNum >= 12) {
+                       newNum++;
+                       TableRow aux = (TableRow) playerList.getChildAt(newNum);
+                       playerList.removeViewAt(newNum);
+                       playerList.removeViewAt(numSelected);
+
+                       tx = ((TextView) newPlayerSelected.getChildAt(2));
+                       char oldStarterPosition = tx.getText().toString().charAt(1);
+
+                       //TODO: Need to create a priority list
+                       /*boolean foundPosition = false;
+                       for (int i = 0; i < 11; i++) {
+                           TableRow tbrow = (TableRow) playerList.getChildAt(i);
+                           char position = ((TextView)tbrow.getChildAt(2)).toString().charAt(1);
+                           if (foundPosition && position != oldStarterPosition){
+                               newNum = i-1;
+                           }
+                           else if (!foundPosition && position == oldStarterPosition)
+                               foundPosition = true;
+                       }*/
+
+                       ((TextView) oldPlayerSelected.getChildAt(0)).setText(String.format("%d ", newNum - 1));
+                       ((TextView) aux.getChildAt(0)).setText(String.format("%d ", numSelected));
+
+                       playerList.addView(oldPlayerSelected, newNum - 1);
+                       playerList.addView(aux, numSelected);
+
+                       playerSelected = null;
+                   } else {
+                       playerSelected = newPlayerSelected;
+                       playerSelected.setBackgroundColor(Color.rgb(255, 102, 0));
+                   }
+               }
+
+           });
 		    
 		    row.setOnLongClickListener(new View.OnLongClickListener() {
 				
