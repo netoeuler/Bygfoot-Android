@@ -323,35 +323,35 @@ public class HomeActivity extends Activity{
 		ibt.setMinimumWidth(50);
 		ibt.setMinimumHeight(50);
 		ibt.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				//onClickBoost(v);
-				final ImageButton ibt = (ImageButton) v;
-				
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
-				alertDialogBuilder.setTitle("Select boost");
-				
-				String[] items = new String[] {"Anti", "Off", "On"};
-				
-				alertDialogBuilder
-					.setItems(items, new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							if (arg1 == 0)
-								ibt.setBackgroundResource(R.drawable.boost_anti);
-							else if (arg1 == 1)
-								ibt.setBackgroundResource(R.drawable.boost_off);
-							else
-								ibt.setBackgroundResource(R.drawable.boost_on);
-						}
-					});
-				
-				AlertDialog alertDialog = alertDialogBuilder.create();
-				alertDialog.show();
-			}
-		});
+
+            @Override
+            public void onClick(View v) {
+                //onClickBoost(v);
+                final ImageButton ibt = (ImageButton) v;
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
+                alertDialogBuilder.setTitle("Select boost");
+
+                String[] items = new String[]{"Anti", "Off", "On"};
+
+                alertDialogBuilder
+                        .setItems(items, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                if (arg1 == 0)
+                                    ibt.setBackgroundResource(R.drawable.boost_anti);
+                                else if (arg1 == 1)
+                                    ibt.setBackgroundResource(R.drawable.boost_off);
+                                else
+                                    ibt.setBackgroundResource(R.drawable.boost_on);
+                            }
+                        });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
 		posheader.addView(ibt);
 		
 		/*text = new TextView(this);
@@ -395,11 +395,11 @@ public class HomeActivity extends Activity{
 		bt = new Button(this);
 		bt.setBackgroundResource(R.drawable.new_week);
         bt.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				startActivity(new Intent(HomeActivity.this, LiveGameActivity.class));
-			}
-		});
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, LiveGameActivity.class));
+            }
+        });
 
 		footer.addView(bt);
 	}
@@ -414,8 +414,7 @@ public class HomeActivity extends Activity{
 		for (int i=0 ; i<lista.length; i++){
 			TextView text = new TextView(this);
 			text.setText(lista[i]);
-			//TODO: Think in a not ugly color 
-			text.setBackgroundColor(Color.MAGENTA);
+			text.setBackgroundColor(Color.GRAY);
             text.setHeight(80);
             text.setTextSize(20);
 			clickListenerPopupItem(text);
@@ -431,17 +430,19 @@ public class HomeActivity extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				if (popupSelected != null)
-					popupSelected.dismiss();
+                Button bt = (Button) v;
+                if (popupSelected == null)
+                    popupSelected = hashPopup.get(bt.getText().toString());
+                else if (popupSelected == hashPopup.get(bt.getText().toString())) {
+                    popupSelected.dismiss();
+                    popupSelected = null;
+                    return;
+                }
+                else
+                    popupSelected.dismiss();
 
-				Button bt = (Button) v;
-
-				if (popupSelected == hashPopup.get(bt.getText().toString()))
-					return;
-
-				popupSelected = hashPopup.get(bt.getText().toString());
-
-				popupSelected.showAsDropDown(bt, 0, 0);
+                popupSelected = hashPopup.get(bt.getText().toString());
+                popupSelected.showAsDropDown(bt, 0, 0);
 			}
 		});
 	}
@@ -468,7 +469,7 @@ public class HomeActivity extends Activity{
 		int i;
 		Class actclass = null;
 
-		if (txbutton.equals("Figures")){
+		if (txbutton.equals(R.string.menu_figures)){
 			for (i=0 ; i<lista.length; i++){
 				if (i==0) actclass = FixturesActivity.class;
 				else if (i==2) actclass = TablesActivity.class;
@@ -478,13 +479,13 @@ public class HomeActivity extends Activity{
 				activitiesList.put(lista[i], actclass);
 			}
 		}
-		else if (txbutton.equals("Team")){
+		else if (txbutton.equals(R.string.menu_team)){
 
 		}
-		else if (txbutton.equals("FinStad")){
+		else if (txbutton.equals(R.string.menu_finstad)){
 
 		}
-		else if (txbutton.equals("Stats")){
+		else if (txbutton.equals(R.string.menu_stats)){
 
 		}
 	}

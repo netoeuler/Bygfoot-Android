@@ -19,4 +19,9 @@
     <string name="lg_statistics">Statistics</string>
     <string name="lg_opponent">Opponent</string>
 
+    <string name="menu_figures">Figures</string>
+    <string name="menu_team">Team</string>
+    <string name="menu_finstad">FinStad</string>
+    <string name="menu_stats">Stats</string>
+
 </resources>
