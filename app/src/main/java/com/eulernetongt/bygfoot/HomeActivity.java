@@ -31,8 +31,9 @@ import com.eulernetongt.entities.Player;
 import org.w3c.dom.Text;
 
 public class HomeActivity extends Activity{
-	
-	private TableLayout playerList;
+
+    private TableLayout top_playerList;
+    private TableLayout playerList;
 	private LinearLayout header;
 	private LinearLayout posheader;
 	private LinearLayout posheader2;
@@ -44,7 +45,7 @@ public class HomeActivity extends Activity{
 	private HashMap<String, Class<? extends Activity>> activitiesList;
 	
 	private TableRow playerSelected;
-    private ArrayList<TextView> sortedPlayerList;
+    private ArrayList<Player> team;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +57,13 @@ public class HomeActivity extends Activity{
 		popupSelected = null;
 		hashPopup = new HashMap<String, PopupWindow>();
 		activitiesList = new HashMap<String, Class<? extends Activity>>();
-		
-		playerList = (TableLayout) findViewById(R.id.tablePlayerList);
+
+        top_playerList = (TableLayout) findViewById(R.id.top_tablePlayerList);
+        playerList = (TableLayout) findViewById(R.id.tablePlayerList);
 		header = (LinearLayout) findViewById(R.id.header);
 		posheader = (LinearLayout) findViewById(R.id.posheader);
 		posheader2 = (LinearLayout) findViewById(R.id.posheader2);
 		footer = (LinearLayout) findViewById(R.id.footer);
-
-        sortedPlayerList = new ArrayList<TextView>();
 		
 		generatePlayerList();
 		generateHeader();
@@ -100,24 +100,27 @@ public class HomeActivity extends Activity{
 		    row1.addView(linha0);
 	    }	    
 	    
-	    playerList.addView(row1);
+	    //top_playerList.addView(row1);
+        playerList.addView(row1);
 	    
-	    ArrayList<Player> team = TeamPlayers.getTable().get(GeneralDefinitions.getTeam());
-	    int i=-1;
-		
+	    //ArrayList<Player> team = TeamPlayers.getTable().get(GeneralDefinitions.getTeam());
+        team = TeamPlayers.getTable().get(GeneralDefinitions.getTeam());
+
 	    for(Player player : team){
 			TableRow row = new TableRow(this);
 			TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 		    row.setLayoutParams(lp);
-		    i++;
 		    
 		    //Blank line to separate starters and reserves
-			if (i == 11){
-		    	TextView linha = new TextView(this);
+			if (curNum == 11){
+                TableRow row2 = new TableRow(this);
+                TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                row.setLayoutParams(lp2);
+
+                TextView linha = new TextView(this);
 			    linha.setText(" ");
-			    row.addView(linha);
-			    playerList.addView(row);
-			    continue;
+			    row2.addView(linha);
+			    playerList.addView(row2);
 		    }
 		    
 		    TextView linhaPlayer = new TextView(this);
@@ -180,31 +183,48 @@ public class HomeActivity extends Activity{
 
                    //TODO: reorganize team by positions (Ex: currently, playerList can be DDDMD...)
                    if (numSelected > 0 && numSelected <= 11 && newNum >= 12) {
-                       newNum++;
-                       TableRow aux = (TableRow) playerList.getChildAt(newNum);
-                       playerList.removeViewAt(newNum);
+                       TableRow aux = (TableRow) playerList.getChildAt(newNum + 1);
+                       playerList.removeViewAt(newNum + 1);
                        playerList.removeViewAt(numSelected);
 
-                       tx = ((TextView) newPlayerSelected.getChildAt(2));
-                       char oldStarterPosition = tx.getText().toString().charAt(1);
-
-                       //TODO: Need to create a priority list
-                       /*boolean foundPosition = false;
-                       for (int i = 0; i < 11; i++) {
-                           TableRow tbrow = (TableRow) playerList.getChildAt(i);
-                           char position = ((TextView)tbrow.getChildAt(2)).toString().charAt(1);
-                           if (foundPosition && position != oldStarterPosition){
-                               newNum = i-1;
-                           }
-                           else if (!foundPosition && position == oldStarterPosition)
-                               foundPosition = true;
-                       }*/
-
-                       ((TextView) oldPlayerSelected.getChildAt(0)).setText(String.format("%d ", newNum - 1));
+                       ((TextView) oldPlayerSelected.getChildAt(0)).setText(String.format("%d ", newNum));
                        ((TextView) aux.getChildAt(0)).setText(String.format("%d ", numSelected));
 
-                       playerList.addView(oldPlayerSelected, newNum - 1);
-                       playerList.addView(aux, numSelected);
+                       char newPlayerPos = ((TextView) aux.getChildAt(2)).getText().charAt(1);
+                       int sortedNumSelected = 0;
+                       boolean foundPos = false;
+
+                       //Start in 1 cause 0 is the list header
+                       for (int x = 1; x < 12; x++) {
+                           TableRow row = (TableRow) playerList.getChildAt(x);
+                           char currentPos = ((TextView) row.getChildAt(2)).getText().charAt(1);
+                           if (!foundPos && currentPos == newPlayerPos)
+                               foundPos = true;
+                           else if (foundPos && currentPos != newPlayerPos){
+                               sortedNumSelected = x;
+                               break;
+                           }
+                       }
+
+                       char oldPlayerPos = ((TextView) oldPlayerSelected.getChildAt(2)).getText().charAt(1);
+                       int sortedNewNum = 0;
+                       foundPos = false;
+
+                       for (int x = 13; x < team.size(); x++) {
+                           TableRow row = (TableRow) playerList.getChildAt(x);
+                           char currentPos = ((TextView) row.getChildAt(2)).getText().charAt(1);
+                           if (!foundPos && currentPos == oldPlayerPos)
+                               foundPos = true;
+                           else if (foundPos && currentPos != oldPlayerPos){
+                               sortedNewNum = x;
+                               break;
+                           }
+                       }
+
+                       //playerList.addView(oldPlayerSelected, newNum);
+                       //playerList.addView(aux, numSelected);
+                       playerList.addView(aux, sortedNumSelected);
+                       playerList.addView(oldPlayerSelected, sortedNewNum);
 
                        playerSelected = null;
                    } else {
@@ -216,35 +236,35 @@ public class HomeActivity extends Activity{
            });
 		    
 		    row.setOnLongClickListener(new View.OnLongClickListener() {
-				
-				@Override
-				public boolean onLongClick(View v) {
-					//onClickPlayerStats(v);
-					TextView tv = (TextView)((TableRow) v).getChildAt(1);
-					String playerName =  tv.getText().toString();
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
-					alertDialogBuilder.setTitle(playerName);
-					alertDialogBuilder.setMessage("Status: OK");
-					alertDialogBuilder.setCancelable(false);
 
-					final View dialogView = getLayoutInflater().inflate(R.layout.long_press_player, null);
-					alertDialogBuilder.setView(dialogView);
+                @Override
+                public boolean onLongClick(View v) {
+                    //onClickPlayerStats(v);
+                    TextView tv = (TextView) ((TableRow) v).getChildAt(1);
+                    String playerName = tv.getText().toString();
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
+                    alertDialogBuilder.setTitle(playerName);
+                    alertDialogBuilder.setMessage("Status: OK");
+                    alertDialogBuilder.setCancelable(false);
 
-					alertDialogBuilder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
+                    final View dialogView = getLayoutInflater().inflate(R.layout.long_press_player, null);
+                    alertDialogBuilder.setView(dialogView);
 
-						}
-					});
-					
-					AlertDialog alertDialog = alertDialogBuilder.create();
-					alertDialog.show();
-					return false;
-				}
-			});
+                    alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                    return false;
+                }
+            });
 		    
 		    playerList.addView(row);
-		}		
+		}
 	}
 	
 	private void generateHeader(){
@@ -418,7 +438,8 @@ public class HomeActivity extends Activity{
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, LiveGameActivity.class));
+                //TODO: Not prepared to be called yet
+                //startActivity(new Intent(HomeActivity.this, LiveGameActivity.class));
             }
         });
 
@@ -490,7 +511,7 @@ public class HomeActivity extends Activity{
 		int i;
 		Class actclass = null;
 
-		if (txbutton.equals(R.string.menu_figures)){
+		if (txbutton.equals("Figures")){
 			for (i=0 ; i<lista.length; i++){
 				if (i==0) actclass = FixturesActivity.class;
 				else if (i==2) actclass = TablesActivity.class;

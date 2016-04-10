@@ -12,6 +12,10 @@
     <string name="lg_statistics">Statistics</string>
     <string name="livegame">Live Game</string>
     <string name="loadgame">Load Game</string>
+    <string name="menu_figures">Figures</string>
+    <string name="menu_finstad">FinStad</string>
+    <string name="menu_stats">Stats</string>
+    <string name="menu_team">Team</string>
     <string name="newgame">New Game</string>
     <string name="preloadnewgame">Preload New Game</string>
     <string name="quit">Quit</string>

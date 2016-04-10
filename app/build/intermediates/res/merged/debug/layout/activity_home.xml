@@ -25,6 +25,11 @@
     	android:orientation="horizontal">
     </LinearLayout>
 
+    <TableLayout
+        android:id="@+id/top_tablePlayerList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </TableLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

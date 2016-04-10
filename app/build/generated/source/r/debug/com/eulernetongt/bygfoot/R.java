@@ -30,41 +30,42 @@ public final class R {
         public static final int style_def=0x7f02000c;
     }
     public static final class id {
-        public static final int TextView01=0x7f080017;
-        public static final int action_settings=0x7f080022;
-        public static final int buttonContribuitors=0x7f080015;
-        public static final int buttonLoadGame=0x7f080014;
-        public static final int buttonNewGame=0x7f080013;
-        public static final int buttonQuit=0x7f080016;
-        public static final int buttonStartGame=0x7f08001e;
+        public static final int TextView01=0x7f080018;
+        public static final int action_settings=0x7f080023;
+        public static final int buttonContribuitors=0x7f080016;
+        public static final int buttonLoadGame=0x7f080015;
+        public static final int buttonNewGame=0x7f080014;
+        public static final int buttonQuit=0x7f080017;
+        public static final int buttonStartGame=0x7f08001f;
         public static final int fixturesHeader=0x7f080000;
         public static final int fixturesList=0x7f080001;
-        public static final int footer=0x7f080006;
+        public static final int footer=0x7f080007;
         public static final int header=0x7f080002;
-        public static final int imageLogo=0x7f080012;
-        public static final int mail_list=0x7f080011;
-        public static final int msg_text=0x7f080010;
-        public static final int msg_title=0x7f08000f;
+        public static final int imageLogo=0x7f080013;
+        public static final int mail_list=0x7f080012;
+        public static final int msg_text=0x7f080011;
+        public static final int msg_title=0x7f080010;
         public static final int posheader=0x7f080003;
         public static final int posheader2=0x7f080004;
-        public static final int preloadLayout=0x7f08001f;
-        public static final int progressBarTime=0x7f080007;
-        public static final int seekBarBallPossession=0x7f08000a;
-        public static final int spinnerCountry=0x7f08001b;
-        public static final int spinnerTeam=0x7f08001d;
-        public static final int tabCommentary=0x7f08000c;
-        public static final int tabOpponent=0x7f08000e;
-        public static final int tabStatistics=0x7f08000d;
-        public static final int tabhostmatch=0x7f08000b;
-        public static final int tableComp=0x7f080021;
-        public static final int tablePlayerList=0x7f080005;
-        public static final int table_seasonresults=0x7f080020;
-        public static final int textCurrentTime=0x7f080008;
-        public static final int textName=0x7f080019;
-        public static final int textScoreMatch=0x7f080009;
-        public static final int textViewCountry=0x7f08001a;
-        public static final int textViewName=0x7f080018;
-        public static final int textViewTeam=0x7f08001c;
+        public static final int preloadLayout=0x7f080020;
+        public static final int progressBarTime=0x7f080008;
+        public static final int seekBarBallPossession=0x7f08000b;
+        public static final int spinnerCountry=0x7f08001c;
+        public static final int spinnerTeam=0x7f08001e;
+        public static final int tabCommentary=0x7f08000d;
+        public static final int tabOpponent=0x7f08000f;
+        public static final int tabStatistics=0x7f08000e;
+        public static final int tabhostmatch=0x7f08000c;
+        public static final int tableComp=0x7f080022;
+        public static final int tablePlayerList=0x7f080006;
+        public static final int table_seasonresults=0x7f080021;
+        public static final int textCurrentTime=0x7f080009;
+        public static final int textName=0x7f08001a;
+        public static final int textScoreMatch=0x7f08000a;
+        public static final int textViewCountry=0x7f08001b;
+        public static final int textViewName=0x7f080019;
+        public static final int textViewTeam=0x7f08001d;
+        public static final int top_tablePlayerList=0x7f080005;
     }
     public static final class layout {
         public static final int activity_fixtures=0x7f030000;
@@ -94,10 +95,14 @@ public final class R {
         public static final int lg_statistics=0x7f060007;
         public static final int livegame=0x7f060008;
         public static final int loadgame=0x7f060009;
-        public static final int newgame=0x7f06000a;
-        public static final int preloadnewgame=0x7f06000b;
-        public static final int quit=0x7f06000c;
-        public static final int tables=0x7f06000d;
+        public static final int menu_figures=0x7f06000a;
+        public static final int menu_finstad=0x7f06000b;
+        public static final int menu_stats=0x7f06000c;
+        public static final int menu_team=0x7f06000d;
+        public static final int newgame=0x7f06000e;
+        public static final int preloadnewgame=0x7f06000f;
+        public static final int quit=0x7f060010;
+        public static final int tables=0x7f060011;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 
