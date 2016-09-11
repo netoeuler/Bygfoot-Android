@@ -62,7 +62,7 @@ public class NewGameActivity extends Activity{
 	
 	private void generateTeams(String country){
 		ArrayList<String> teams;
-		if (country.equals("")){
+		if (country.isEmpty()){
 			teams = new ArrayList<String>();
 			teams.add("");
 		}
@@ -94,7 +94,7 @@ public class NewGameActivity extends Activity{
 		String errorMessage = "";
 		if (name.length() == 0)
 			errorMessage += "Choose your name";
-		if (selectedTeam.equals("")){
+		if (selectedTeam.isEmpty()){
 			if (errorMessage.length() > 0)
 				errorMessage += " and ";
 			errorMessage += "Choose your team";

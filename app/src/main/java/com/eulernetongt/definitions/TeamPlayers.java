@@ -29,15 +29,15 @@ public class TeamPlayers {
 			Random rand = new Random();
 			ArrayList<Player> playerList = new ArrayList<Player>();
 			
-			for (int i=0 ; i<18; i++){
+			for (int i=1 ; i<18; i++){
 				Player.Position position = null;
-				if (i == 0 || i == 12)
+				if (i == 1 || i == 12)
 			    	position = Player.Position.GOALKEEPER;
-			    else if ((i >= 1 && i <= 4) || (i >= 13 && i <= 14))
+			    else if ((i >= 2 && i <= 6) || (i >= 13 && i <= 14))
 			    	position = Player.Position.DEFENDER;
-			    else if ((i >= 5 && i <= 8) || (i >= 15 && i <= 16))
+			    else if ((i >= 7 && i <= 9) || (i >= 15 && i <= 16))
 			    	position = Player.Position.MIDFIELD;
-			    else if ((i >= 9 && i <= 11) || (i == 17))
+			    else if ((i >= 10 && i <= 11) || (i == 17))
 			    	position = Player.Position.FOWARD;
 				
 				Player player = new Player(NameGenerator.generateName(NamesBrazil.names), position);

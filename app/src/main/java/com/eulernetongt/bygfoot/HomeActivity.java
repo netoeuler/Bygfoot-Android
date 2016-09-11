@@ -32,8 +32,9 @@ import org.w3c.dom.Text;
 
 public class HomeActivity extends Activity{
 
-    private TableLayout top_playerList;
+    private TableLayout header_playerList;
     private TableLayout playerList;
+	private TableLayout playerList2;
 	private LinearLayout header;
 	private LinearLayout posheader;
 	private LinearLayout posheader2;
@@ -58,12 +59,18 @@ public class HomeActivity extends Activity{
 		hashPopup = new HashMap<String, PopupWindow>();
 		activitiesList = new HashMap<String, Class<? extends Activity>>();
 
-        top_playerList = (TableLayout) findViewById(R.id.top_tablePlayerList);
+        header_playerList = (TableLayout) findViewById(R.id.header_tablePlayerList);
         playerList = (TableLayout) findViewById(R.id.tablePlayerList);
+		playerList2 = (TableLayout) findViewById(R.id.tablePlayerList2);
 		header = (LinearLayout) findViewById(R.id.header);
 		posheader = (LinearLayout) findViewById(R.id.posheader);
 		posheader2 = (LinearLayout) findViewById(R.id.posheader2);
 		footer = (LinearLayout) findViewById(R.id.footer);
+
+		LinearLayout separate = (LinearLayout) findViewById(R.id.separatePlayerLists);
+		TextView txtseparate = new TextView(this);
+		txtseparate.setText("");
+		separate.addView(txtseparate);
 		
 		generatePlayerList();
 		generateHeader();
@@ -98,10 +105,10 @@ public class HomeActivity extends Activity{
 	    	linha0 = new TextView(this);
 	    	linha0.setText(tx);
 		    row1.addView(linha0);
-	    }	    
+	    }
 	    
-	    //top_playerList.addView(row1);
-        playerList.addView(row1);
+	    header_playerList.addView(row1);
+        //playerList.addView(row1);
 	    
 	    //ArrayList<Player> team = TeamPlayers.getTable().get(GeneralDefinitions.getTeam());
         team = TeamPlayers.getTable().get(GeneralDefinitions.getTeam());
@@ -112,7 +119,7 @@ public class HomeActivity extends Activity{
 		    row.setLayoutParams(lp);
 		    
 		    //Blank line to separate starters and reserves
-			if (curNum == 11){
+			/*if (curNum == 11){
                 TableRow row2 = new TableRow(this);
                 TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                 row.setLayoutParams(lp2);
@@ -121,11 +128,12 @@ public class HomeActivity extends Activity{
 			    linha.setText(" ");
 			    row2.addView(linha);
 			    playerList.addView(row2);
-		    }
+		    }*/
 		    
 		    TextView linhaPlayer = new TextView(this);
 		    linhaPlayer.setText(String.format("%d ", ++curNum));
-		    row.addView(linhaPlayer);		    
+		    row.addView(linhaPlayer);
+
 		    linhaPlayer = new TextView(this);
 		    linhaPlayer.setText(player.getName().concat(" "));		    
 		    row.addView(linhaPlayer);
@@ -167,70 +175,96 @@ public class HomeActivity extends Activity{
 
                @Override
                public void onClick(View v) {
-                   int numSelected = -1;
-                   TableRow oldPlayerSelected = null;
-                   if (playerSelected != null) {
-                       //TODO: Change to default background color
-                       playerSelected.setBackgroundColor(Color.WHITE);
-                       oldPlayerSelected = playerSelected;
-                       TextView tx = ((TextView) playerSelected.getChildAt(0));
-                       numSelected = Integer.parseInt(tx.getText().toString().trim());
-                   }
+				   int oldNumSelected = -1;
+				   int newNumSelected = -1;
 
-                   TableRow newPlayerSelected = (TableRow) v;
-                   TextView tx = ((TextView) newPlayerSelected.getChildAt(0));
-                   int newNum = Integer.parseInt(tx.getText().toString().trim());
+				   if (playerSelected == null)
+					   playerSelected = (TableRow) v;
+				   else{
+					   //TODO: Change to default background color
+					   playerSelected.setBackgroundColor(Color.WHITE);
+					   TextView tx = ((TextView) playerSelected.getChildAt(0));
+					   oldNumSelected = Integer.parseInt(tx.getText().toString().trim());
 
-                   //TODO: reorganize team by positions (Ex: currently, playerList can be DDDMD...)
-                   if (numSelected > 0 && numSelected <= 11 && newNum >= 12) {
-                       TableRow aux = (TableRow) playerList.getChildAt(newNum + 1);
-                       playerList.removeViewAt(newNum + 1);
-                       playerList.removeViewAt(numSelected);
+					   playerSelected = (TableRow) v;
+				   }
 
-                       ((TextView) oldPlayerSelected.getChildAt(0)).setText(String.format("%d ", newNum));
-                       ((TextView) aux.getChildAt(0)).setText(String.format("%d ", numSelected));
+				   TextView tx = ((TextView) playerSelected.getChildAt(0));
+				   newNumSelected = Integer.parseInt(tx.getText().toString().trim());
 
-                       char newPlayerPos = ((TextView) aux.getChildAt(2)).getText().charAt(1);
-                       int sortedNumSelected = 0;
-                       boolean foundPos = false;
+				   playerSelected.setBackgroundColor(Color.rgb(255, 102, 0));
 
-                       //Start in 1 cause 0 is the list header
-                       for (int x = 1; x < 12; x++) {
-                           TableRow row = (TableRow) playerList.getChildAt(x);
-                           char currentPos = ((TextView) row.getChildAt(2)).getText().charAt(1);
-                           if (!foundPos && currentPos == newPlayerPos)
-                               foundPos = true;
-                           else if (foundPos && currentPos != newPlayerPos){
-                               sortedNumSelected = x;
-                               break;
-                           }
-                       }
+				   if (oldNumSelected == -1)
+					   return;
 
-                       char oldPlayerPos = ((TextView) oldPlayerSelected.getChildAt(2)).getText().charAt(1);
-                       int sortedNewNum = 0;
-                       foundPos = false;
+				   boolean newNumIsFirst = newNumSelected > 0 && newNumSelected < 12;
+				   boolean oldNumIsFirst = oldNumSelected > 0 && oldNumSelected < 12;
 
-                       for (int x = 13; x < team.size(); x++) {
-                           TableRow row = (TableRow) playerList.getChildAt(x);
-                           char currentPos = ((TextView) row.getChildAt(2)).getText().charAt(1);
-                           if (!foundPos && currentPos == oldPlayerPos)
-                               foundPos = true;
-                           else if (foundPos && currentPos != oldPlayerPos){
-                               sortedNewNum = x;
-                               break;
-                           }
-                       }
+				   if ((newNumIsFirst && !oldNumIsFirst) || (!newNumIsFirst && oldNumIsFirst)){
+					   int firstNum, reserveNum;
+					   if (newNumSelected < 11) {
+						   firstNum = newNumSelected - 1;
+						   reserveNum = oldNumSelected - 12;
+					   }
+					   else {
+						   firstNum = oldNumSelected - 1;
+						   reserveNum = newNumSelected - 12;
+					   }
 
-                       //playerList.addView(oldPlayerSelected, newNum);
-                       //playerList.addView(aux, numSelected);
-                       playerList.addView(aux, sortedNumSelected);
-                       playerList.addView(oldPlayerSelected, sortedNewNum);
+					   TableRow theFirst = (TableRow) playerList.getChildAt(firstNum);
+					   //((TextView) theFirst.getChildAt(0)).setText(String.format("%d ",reserveNum + 12));
+					   TableRow theReserve = (TableRow) playerList2.getChildAt(reserveNum);
+					   //((TextView) theReserve.getChildAt(0)).setText(String.format("%d ",firstNum + 1));
 
-                       playerSelected = null;
-                   } else {
-                       playerSelected = newPlayerSelected;
-                       playerSelected.setBackgroundColor(Color.rgb(255, 102, 0));
-                   }
+					   char firstPos = ((TextView) theFirst.getChildAt(2)).getText().charAt(1);
+					   char reservePos = ((TextView) theReserve.getChildAt(2)).getText().charAt(1);
+
+					   playerList.removeViewAt(firstNum);
+					   playerList2.removeViewAt(reserveNum);
+
+					   int posToAdd;
+					   boolean posFounded;
+
+					   //Let the positions of the first 11 sorted
+					   posFounded = false;
+					   for (posToAdd = 0 ; posToAdd < 11 ; posToAdd++){
+						   TableRow curplayer = (TableRow) playerList.getChildAt(posToAdd);
+						   char curpos = ((TextView) curplayer.getChildAt(2)).getText().charAt(1);
+						   if (posFounded && curpos != reservePos)
+							   break;
+						   if (curpos == reservePos)
+							   posFounded = true;
+					   }
+					   playerList.addView(theReserve, posToAdd);
+
+					   //Let the positions of the reserves sorted
+					   posFounded = false;
+					   for (posToAdd = 0 ; posToAdd < 6 ; posToAdd++){
+						   TableRow curplayer = (TableRow) playerList2.getChildAt(posToAdd);
+						   char curpos = ((TextView) curplayer.getChildAt(2)).getText().charAt(1);
+						   if (posFounded && curpos != firstPos)
+							   break;
+						   if (curpos == firstPos)
+							   posFounded = true;
+					   }
+					   playerList2.addView(theFirst, posToAdd);
+
+					   int numPlayer;
+					   //Let the number of the first 11 sorted
+					   for (numPlayer = 0 ; numPlayer < 11 ; numPlayer++) {
+						   TableRow curplayer = (TableRow) playerList.getChildAt(numPlayer);
+						   ((TextView) curplayer.getChildAt(0)).setText(String.format("%d ",numPlayer + 1));
+					   }
+
+					   //Let the number of the reserves sorted
+					   for (numPlayer = 0 ; numPlayer < 6 ; numPlayer++) {
+						   TableRow curplayer = (TableRow) playerList2.getChildAt(numPlayer);
+						   ((TextView) curplayer.getChildAt(0)).setText(String.format("%d ",numPlayer + 12));
+					   }
+
+					   playerSelected.setBackgroundColor(Color.WHITE);
+					   playerSelected = null;
+				   }
                }
 
            });
@@ -262,8 +296,11 @@ public class HomeActivity extends Activity{
                     return false;
                 }
             });
-		    
-		    playerList.addView(row);
+
+			if (curNum < 12)
+				playerList.addView(row);
+			else
+				playerList2.addView(row);
 		}
 	}
 	
